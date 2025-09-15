@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import Icon from "@/components/ui/icon";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   const topPlayers = [
     { 
       rank: 1, 
@@ -72,7 +75,14 @@ const Index = () => {
         </div>
         <div className="flex items-center gap-3">
           <Icon name="Search" size={20} />
-          <Icon name="Monitor" size={20} />
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-gaming-dark hover:bg-gaming-dark/10"
+            onClick={() => navigate('/analytics')}
+          >
+            <Icon name="BarChart3" size={20} />
+          </Button>
           <Icon name="Shield" size={20} />
           <Icon name="Key" size={20} />
         </div>
@@ -88,6 +98,34 @@ const Index = () => {
               className="w-full bg-gaming-gray border border-gray-600 rounded-lg px-4 py-3 text-gaming-light placeholder-gray-400 focus:border-neon-green focus:ring-1 focus:ring-neon-green transition-colors"
             />
             <Icon name="Search" size={20} className="absolute right-3 top-3.5 text-gray-400" />
+          </div>
+          
+          {/* Filter Options */}
+          <div className="flex gap-2 mt-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-600 text-gray-300 hover:border-neon-green hover:text-neon-green transition-colors"
+            >
+              <Icon name="Filter" size={16} className="mr-2" />
+              Фильтры
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-600 text-gray-300 hover:border-neon-green hover:text-neon-green transition-colors"
+            >
+              <Icon name="ArrowUpDown" size={16} className="mr-2" />
+              Сортировка
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-600 text-gray-300 hover:border-neon-green hover:text-neon-green transition-colors"
+            >
+              <Icon name="Users" size={16} className="mr-2" />
+              Кланы
+            </Button>
           </div>
         </div>
 
@@ -155,6 +193,7 @@ const Index = () => {
                     <Button 
                       size="sm" 
                       className="bg-neon-green text-gaming-dark hover:bg-neon-green/90 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-neon-green/30"
+                      onClick={() => navigate(`/player/${player.id}`)}
                     >
                       View
                     </Button>
